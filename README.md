@@ -12,6 +12,7 @@ This app can take test of students and teacher can review the answer sheet of al
 - Student can see their score.
 - Teacher can add exams and end the exam.
 - Student uploaded by manually and by excel sheet.
+- Student can upload answersheet by PDF.
 
 
 
