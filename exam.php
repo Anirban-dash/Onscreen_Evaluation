@@ -16,6 +16,11 @@ if(mysqli_num_rows($check_res)>0){
 }
 $sql="SELECT * from exan where statuss='ongoing'";
 $query=mysqli_query($con,$sql) or die(mysqli_error($con));
+
+$q_sql="SELECT * from exan where exam_id='$id'";
+$q_res=mysqli_query($con,$q_sql) or die(mysqli_error($con));
+$qu_row=mysqli_fetch_array($q_res);
+$f_name=$qu_row['qpdf'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -108,6 +113,7 @@ $query=mysqli_query($con,$sql) or die(mysqli_error($con));
     $i++;
           }
     ?>
+    <iframe src="./questions/<?php echo $f_name ?>" width="100%" height="500px"></iframe>
     <br>
     <p class="text-danger">*Upload Your answer sheet</p>
     <p class="text-danger">->File name should be your roll number</p>

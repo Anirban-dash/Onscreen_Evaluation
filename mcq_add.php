@@ -7,7 +7,7 @@ $sub_res = mysqli_query($con, $sub_list) or die(mysqli_error($con));
 $exam=mysqli_fetch_array($sub_res);
 $mcq = $exam['mcq'];
 $saq = $exam['saq'];
-$id=$exam['exam_id'];
+$id=$exam['exam_id']; 
 ?>
 
 <!DOCTYPE html>
@@ -72,10 +72,9 @@ $id=$exam['exam_id'];
     <div class="container col-md-7 mt-5">
     <div class="card">
   <div class="card-header d-flex justify-content-between">
-    <p>Artificial Intelligence</p>
   </div>
 </div>
-    <form action="add_ques_submit.php" method="post" class="mt-2">
+    <form action="add_ques_submit.php" method="post" class="mt-2" enctype="multipart/form-data">
       <input type="number" name="mcq" value="<?php echo $mcq ?>" hidden/>
       <input type="number" name="saq" value="<?php echo $saq ?>" hidden/>
       <input type="number" name="e_id" value="<?php echo $id ?>" hidden/>
@@ -121,6 +120,8 @@ $id=$exam['exam_id'];
   <?php
   $i++;
   }?>
+  <p>*Upload Question paper</p>
+  <input type="file" name="file" accept=".pdf" required /> <br><br>
   <button type="submit" class="btn btn-block btn-info mb-4">Add</button>
 </form>
 

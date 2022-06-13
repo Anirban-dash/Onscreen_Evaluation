@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2022 at 05:34 PM
+-- Generation Time: Jun 13, 2022 at 08:02 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -53,17 +53,9 @@ CREATE TABLE `exan` (
   `statuss` varchar(255) DEFAULT NULL,
   `mcq` int(11) DEFAULT NULL,
   `saq` int(11) DEFAULT NULL,
-  `sub_id` int(11) DEFAULT NULL
+  `sub_id` int(11) DEFAULT NULL,
+  `qpdf` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `exan`
---
-
-INSERT INTO `exan` (`exam_id`, `name`, `statuss`, `mcq`, `saq`, `sub_id`) VALUES
-(1, 'Computer', 'end', 2, 3, 3),
-(2, 'Python', 'end', 2, 2, 4),
-(3, 'History', 'end', 3, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -99,40 +91,6 @@ CREATE TABLE `options` (
   `op_no` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `options`
---
-
-INSERT INTO `options` (`op_id`, `answer`, `q_id`, `op_no`) VALUES
-(17, 'sdf', 235260, 1),
-(18, 'fsdf', 235260, 2),
-(19, 'fsdfff', 235260, 3),
-(20, 'sdf', 235260, 4),
-(21, 'sdf', 235261, 1),
-(22, 'dsf', 235261, 2),
-(23, 'sdf', 235261, 3),
-(24, 'sdf', 235261, 4),
-(25, 'snake', 235265, 1),
-(26, 'native language', 235265, 2),
-(27, 'programming language', 235265, 3),
-(28, 'computer', 235265, 4),
-(29, 'By war', 235266, 1),
-(30, 'By keywords', 235266, 2),
-(31, 'by Number', 235266, 3),
-(32, 'by characters', 235266, 4),
-(33, 'dfd', 235269, 1),
-(34, 'native language', 235269, 2),
-(35, 'fsdfff', 235269, 3),
-(36, 'computer', 235269, 4),
-(37, 'gdfgfd', 235270, 1),
-(38, 'cvbvcb', 235270, 2),
-(39, 'ghjhjh', 235270, 3),
-(40, 'qewqe', 235270, 4),
-(41, 'sfdf', 235271, 1),
-(42, 'gfdg', 235271, 2),
-(43, 'asdas', 235271, 3),
-(44, 'xcvx', 235271, 4);
-
 -- --------------------------------------------------------
 
 --
@@ -146,13 +104,6 @@ CREATE TABLE `pdf_upload` (
   `pdf` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `pdf_upload`
---
-
-INSERT INTO `pdf_upload` (`p_id`, `st_id`, `ex_id`, `pdf`) VALUES
-(1, 3, 3, 'Software Engineering Lab manual(2).pdf');
-
 -- --------------------------------------------------------
 
 --
@@ -165,27 +116,6 @@ CREATE TABLE `question` (
   `type` varchar(255) DEFAULT NULL,
   `e_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `question`
---
-
-INSERT INTO `question` (`q_id`, `question`, `type`, `e_id`) VALUES
-(235260, 'cdssd', 'mcq', 1),
-(235261, 'sdf', 'mcq', 1),
-(235262, 'sdfdsf', 'saq', 1),
-(235263, 'sdfsd', 'saq', 1),
-(235264, 'sdf', 'saq', 1),
-(235265, 'What is python?', 'mcq', 2),
-(235266, 'How to decleare var?', 'mcq', 2),
-(235267, 'what is function?', 'saq', 2),
-(235268, 'what is library?', 'saq', 2),
-(235269, 'What is python?', 'mcq', 3),
-(235270, 'sdfsdfdsg', 'mcq', 3),
-(235271, 'sdfsgdh fdhgfhgh', 'mcq', 3),
-(235272, 'cxvxcvxc dsfdsf?', 'saq', 3),
-(235273, 'xvfdgdfg fgddfg?', 'saq', 3),
-(235274, 'dvfdfbdf dfgfdgfd dsfdsf?', 'saq', 3);
 
 -- --------------------------------------------------------
 
@@ -248,16 +178,6 @@ CREATE TABLE `user_ans` (
   `e_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `user_ans`
---
-
-INSERT INTO `user_ans` (`ua_id`, `u_id`, `score`, `stat`, `e_id`) VALUES
-(1, 1, '6', 'check', 1),
-(2, 1, '3', 'check', 2),
-(3, 1, '0', 'give', 3),
-(4, 3, '19', 'check', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -271,33 +191,6 @@ CREATE TABLE `user_exam` (
   `e_id` int(11) DEFAULT NULL,
   `u_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user_exam`
---
-
-INSERT INTO `user_exam` (`ux_id`, `q_id`, `u_ans`, `e_id`, `u_id`) VALUES
-(11, 'cdssd', 'sdf', 1, 1),
-(12, 'sdf', 'Unattempt', 1, 1),
-(13, 'sdfdsf', 'zv', 1, 1),
-(14, 'sdfsd', 'xcvxv', 1, 1),
-(15, 'sdf', 'xv', 1, 1),
-(16, 'What is python?', 'snake', 2, 1),
-(17, 'How to decleare var?', 'by characters', 2, 1),
-(18, 'what is function?', 'programming', 2, 1),
-(19, 'what is library?', 'bunch of books', 2, 1),
-(20, 'What is python?', 'native language', 3, 1),
-(21, 'sdfsdfdsg', 'ghjhjh', 3, 1),
-(22, 'sdfsgdh fdhgfhgh', 'xcvx', 3, 1),
-(23, 'cxvxcvxc dsfdsf?', 'sfdfdf', 3, 1),
-(24, 'xvfdgdfg fgddfg?', 'dfgdf', 3, 1),
-(25, 'dvfdfbdf dfgfdgfd dsfdsf?', 'dfgdfg', 3, 1),
-(26, 'What is python?', 'native language', 3, 3),
-(27, 'sdfsdfdsg', 'ghjhjh', 3, 3),
-(28, 'sdfsgdh fdhgfhgh', 'xcvx', 3, 3),
-(29, 'cxvxcvxc dsfdsf?', 'sfsdf', 3, 3),
-(30, 'xvfdgdfg fgddfg?', 'sfdsf', 3, 3),
-(31, 'dvfdfbdf dfgfdgfd dsfdsf?', 'sdfsdf', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -396,7 +289,7 @@ ALTER TABLE `coe`
 -- AUTO_INCREMENT for table `exan`
 --
 ALTER TABLE `exan`
-  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `faculty`
@@ -408,19 +301,19 @@ ALTER TABLE `faculty`
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
-  MODIFY `op_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `op_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `pdf_upload`
 --
 ALTER TABLE `pdf_upload`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235275;
+  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235283;
 
 --
 -- AUTO_INCREMENT for table `student`
@@ -438,13 +331,13 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `user_ans`
 --
 ALTER TABLE `user_ans`
-  MODIFY `ua_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ua_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_exam`
 --
 ALTER TABLE `user_exam`
-  MODIFY `ux_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `ux_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `us_mark`
