@@ -9,6 +9,10 @@ $e_id=$row['e_id'];
 $sub_list="SELECT * from student where st_id='$u_d'";
 $sub_res=mysqli_query($con,$sub_list) or die(mysqli_error($con));
 $sub=mysqli_fetch_array($sub_res);
+$up_sql="SELECT * from pdf_upload where st_id='$u_d' and ex_id='$e_id'";
+$up_res=mysqli_query($con,$up_sql) or die(mysqli_error($con));
+$pdf=mysqli_fetch_array($up_res);
+$f_name=$pdf['pdf'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -98,6 +102,9 @@ while($ans=mysqli_fetch_array($ans_res)){
     $i++;
 }
 ?>
+<iframe src="./uploads/<?php echo $f_name ?>" width="100%" height="500px"></iframe>
+<a style="text-decoration:none" href="/uploads/<?php echo $f_name ?>" download>Download Sheet</a><br>
+<input type="number" name="pdfMark" class="form-control" placeholder="Add marks" required><br>
 <button type="submit" class="btn btn-success mb-2">Evaluate</button>
 </form>
 

@@ -8,12 +8,14 @@ $us_id=$_SESSION['id'];
 $id=$_GET['id'];
 $fac_list="SELECT * from question where e_id='$id'";
 $fac_res=mysqli_query($con,$fac_list) or die(mysqli_error($con));
-$check_ex="SELECT * from user_ans where u_id='$us_id'";
+$check_ex="SELECT * from user_ans where u_id='$us_id' and e_id='$id'";
 $check_res=mysqli_query($con,$check_ex) or die(mysqli_error($con));
 if(mysqli_num_rows($check_res)>0){
   echo "You already give";
   die();
 }
+$sql="SELECT * from exan where statuss='ongoing'";
+$query=mysqli_query($con,$sql) or die(mysqli_error($con));
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,7 +77,7 @@ if(mysqli_num_rows($check_res)>0){
     <p><?php echo $_SESSION['name'] ?></p>
   </div>
 </div>
-        <form action="ans_submit.php" method="post" class="mt-2 mb-2">
+        <form action="ans_submit.php" method="post" class="mt-2 mb-2" enctype="multipart/form-data">
           <input type="number" name="e_id" value="<?php echo $id;?>" hidden/>
           <?php
           $i=1;
@@ -95,7 +97,7 @@ if(mysqli_num_rows($check_res)>0){
     <?php }
     echo '</div>
     </div>';
-    }else if($row['type']=='saq'){?>
+    }else if($row['type']=='saq'){?> 
    <div class="card">
   <div class="card-body">
     <h5 class="card-title"><?php echo $i.'. '.$row['question'];?></h5>
@@ -106,7 +108,11 @@ if(mysqli_num_rows($check_res)>0){
     $i++;
           }
     ?>
-<button type="submit" class="btn btn-success mb-2">Evaluate</button>
+    <br>
+    <p class="text-danger">*Upload Your answer sheet</p>
+    <p class="text-danger">->File name should be your roll number</p>
+    <input type="file" name="file" accept=".pdf" required /> <br><br>
+<button type="submit" class="btn btn-success mb-2">Submit</button>
 </div>
 </form>
 
